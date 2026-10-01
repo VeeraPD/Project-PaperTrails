@@ -1,1 +1,74 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Papertrail · Ask your PDFs</title><link rel="stylesheet" href="/static/styles.css"></head><body><div class="shell"><aside class="sidebar"><div class="brand"><span class="mark">◈</span> Papertrail</div><p class="aside-label">YOUR RESEARCH SPACE</p><h2>Documents</h2><label class="drop" id="drop"><input type="file" id="files" accept=".pdf,application/pdf" multiple><span class="upload-icon">↑</span><strong>Choose PDFs</strong><small>or drop them here · up to 4 MB each</small></label><div id="status" role="status"></div><ul id="documents"></ul><button class="clear" id="clear">Clear workspace</button><div class="sidebar-foot">Answers stay tied to the pages you upload.</div></aside><main class="main"><header><div><span class="eyebrow">DOCUMENT RESEARCH ASSISTANT</span><h1>Ask better questions<br><em>of your documents.</em></h1></div><span class="badge">PDF research, simplified</span></header><section class="chat" id="chat" aria-live="polite"><div class="empty" id="empty"><div class="empty-icon">✳</div><h2>Start with a question</h2><p>Upload a report, article, or paper. Then ask for a summary, compare ideas, or find a detail. Every supported answer points to its source page.</p><div class="prompts"><button data-prompt="Summarise the main findings.">Summarise the main findings ↗</button><button data-prompt="What are the key risks and recommendations?">Find key risks and recommendations ↗</button></div></div></section><form id="form" class="composer"><textarea id="question" rows="1" maxlength="2500" placeholder="Ask anything about your documents…" aria-label="Your question"></textarea><button id="send" type="submit" aria-label="Send">↑</button></form><p class="hint">Answers are based on your uploaded PDFs. Check the cited pages for important decisions.</p></main></div><script src="/static/app.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Papertrail · Ask your PDFs</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <!-- The page has two columns: a sidebar for documents and a main area for chat. -->
+  <div class="shell">
+
+    <!-- Sidebar: upload PDFs, see what is uploaded, clear everything -->
+    <aside class="sidebar">
+      <div class="brand"><span class="mark">◈</span> Papertrail</div>
+      <p class="aside-label">YOUR RESEARCH SPACE</p>
+      <h2>Documents</h2>
+
+      <!-- Clicking this label (or dropping files on it) opens the file picker.
+           The real <input> is hidden by CSS; app.js reads the chosen files. -->
+      <label class="drop" id="drop">
+        <input type="file" id="files" accept=".pdf,application/pdf" multiple>
+        <span class="upload-icon">↑</span>
+        <strong>Choose PDFs</strong>
+        <small>or drop them here · up to 4 MB each</small>
+      </label>
+
+      <!-- Progress and error messages appear here (filled in by app.js) -->
+      <div id="status" role="status"></div>
+
+      <!-- The list of uploaded documents (filled in by app.js) -->
+      <ul id="documents"></ul>
+
+      <button class="clear" id="clear">Clear workspace</button>
+      <div class="sidebar-foot">Answers stay tied to the pages you upload.</div>
+    </aside>
+
+    <!-- Main area: heading, conversation, and the question box -->
+    <main class="main">
+      <header>
+        <div>
+          <span class="eyebrow">DOCUMENT RESEARCH ASSISTANT</span>
+          <h1>Ask better questions<br><em>of your documents.</em></h1>
+        </div>
+        <span class="badge">PDF research, simplified</span>
+      </header>
+
+      <!-- Messages are added here by app.js. aria-live lets screen readers announce new ones. -->
+      <section class="chat" id="chat" aria-live="polite">
+        <!-- Welcome panel, hidden once the first message is sent -->
+        <div class="empty" id="empty">
+          <div class="empty-icon">✳</div>
+          <h2>Start with a question</h2>
+          <p>Upload a report, article, or paper. Then ask for a summary, compare ideas, or find a detail. Every supported answer points to its source page.</p>
+          <!-- Buttons with data-prompt copy their text into the question box -->
+          <div class="prompts">
+            <button data-prompt="Summarise the main findings.">Summarise the main findings ↗</button>
+            <button data-prompt="What are the key risks and recommendations?">Find key risks and recommendations ↗</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Question box. Enter sends; Shift+Enter adds a new line (see app.js). -->
+      <form id="form" class="composer">
+        <textarea id="question" rows="1" maxlength="2500" placeholder="Ask anything about your documents…" aria-label="Your question"></textarea>
+        <button id="send" type="submit" aria-label="Send">↑</button>
+      </form>
+      <p class="hint">Answers are based on your uploaded PDFs. Check the cited pages for important decisions.</p>
+    </main>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
